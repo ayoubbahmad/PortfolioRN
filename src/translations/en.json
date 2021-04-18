@@ -1,0 +1,7 @@
+{
+  "app.containers.OrdersAnalytics.test": "Hello!",
+  "app.containers.OrdersAnalytics.title": "a title",
+  "app.screen.Params.header": "This is the Params Screen!",
+  "app.screen.Params.title": "This is the Params Screen!",
+  "app.screen.Test.header": "This is the Test Screen!"
+}
