@@ -23,6 +23,8 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
+import { StyleSheetFactory } from 'utils/StyleSheetFactory';
+import useStyleSheetFactory from 'hooks/useStyleSheetFactory';
 
 const stateSelector = createStructuredSelector({
   projectsScreen: makeSelectProjectsScreen(),
@@ -33,6 +35,8 @@ const key = 'projectsScreen';
 const ProjectsScreen: React.FC<IProjectsScreenProps> = ({}) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+
+  const styles = useStyleSheetFactory(stylesFactory);
 
   /* eslint-disable no-unused-vars */
   const { projectsScreen } = useSelector(stateSelector);
@@ -110,17 +114,25 @@ const ProjectsScreen: React.FC<IProjectsScreenProps> = ({}) => {
 };
 
 // const styles = StyleSheet.create({
-//   container: {
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     flex: 1,
-//   },
+// container: {
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   flex: 1,
+// },
 // });
 
-const styles = StyleSheet.create({
+const stylesFactory = (theme) => ({
+  // const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
   header: {
     height: 330,
-    backgroundColor: '#6C63FF',
+    // backgroundColor: '#6C63FF',
+    backgroundColor: theme.color.primary,
+
     paddingVertical: 30,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -137,6 +149,7 @@ const styles = StyleSheet.create({
     width: 140,
     borderRadius: 70,
     backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: theme.color.primary,
   },
 
   name: {
@@ -151,6 +164,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+// });
 
 export interface IProjectsScreenProps {}
 

@@ -30,9 +30,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import AnimatedScrollViewHeader from 'components/AnimatedScrollViewHeader';
+import useTheme from 'hooks/useTheme';
 
-const HEADER_MIN_HEIGHT = 50;
 const HEADER_MAX_HEIGHT = 330;
+const INTRODUCTION_IMAGE_INTERSECTION = 12;
 
 const stateSelector = createStructuredSelector({
   homeScreen: makeSelectHomeScreen(),
@@ -49,6 +50,8 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
   const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
 
+  const { color } = useTheme();
+
   const scrollYAnimation = useSharedValue(0);
 
   const scrollHandler = useAnimatedScrollHandler((event: any) => {
@@ -64,13 +67,20 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
       <Animated.ScrollView
         scrollEventThrottle={16}
         onScroll={scrollHandler}
-        // onScroll={Animated.event([
-        //   { nativeEvent: { contentOffset: { y: scrollYAnimation } } },
-        // ])}
         contentContainerStyle={[styles.scrollViewContentContainerStyle]}
         style={StyleSheet.absoluteFill}>
-        <View style={{ height: HEADER_MAX_HEIGHT }} />
-        <FormattedMessage {...messages.header} />
+        <View style={styles.hidenImageReplacer}>
+          <FormattedMessage {...messages.name} />
+        </View>
+        <View
+          style={[
+            styles.introductionContainer,
+            {
+              backgroundColor: color.background,
+            },
+          ]}>
+          <FormattedMessage {...messages.introduction} />
+        </View>
       </Animated.ScrollView>
     </Animated.View>
   );
@@ -82,16 +92,28 @@ const styles = StyleSheet.create({
   },
   scrollViewContentContainerStyle: {
     flex: 1,
+    paddingHorizontal: 12,
   },
   scrollViewStyle: {
     flex: 1,
   },
-  image: {
-    width: '100%',
+  hidenImageReplacer: {
     height: HEADER_MAX_HEIGHT,
-    resizeMode: 'cover',
+    justifyContent: 'flex-end',
+    paddingBottom: INTRODUCTION_IMAGE_INTERSECTION,
+  },
+  introductionContainer: {
+    marginTop: -INTRODUCTION_IMAGE_INTERSECTION,
+    padding: 12,
+    borderRadius: 12,
   },
 });
+
+// const sttt = StylesFactory(theme=>({
+
+// }))
+
+// const StylesFactory = (callback)=>StyleSheet.create(callback(theme))
 
 export interface IHomeScreenProps {}
 

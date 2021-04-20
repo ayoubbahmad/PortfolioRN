@@ -15,7 +15,7 @@ import { useColorScheme } from 'react-native';
 export type IAppProps = {};
 
 const initialState = {};
-const store = configureStore(initialState);
+export const store = configureStore(initialState);
 
 export const app: React.FC<IAppProps> = () => {
   // const navigationRef = React.useRef();
