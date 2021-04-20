@@ -2,15 +2,13 @@ import useTheme from 'hooks/useTheme';
 import { closeAlertAction } from 'providers/AlertsProvider/actions';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import {
-  TouchableNativeFeedback,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+// import {
+//   TouchableNativeFeedback,
+//   TouchableOpacity,
+// } from 'react-native-gesture-handler';
 import Animated, {
-  Easing,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useDispatch } from 'react-redux';

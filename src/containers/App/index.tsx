@@ -12,6 +12,7 @@ import { NavigationProvider } from 'providers/NavigationProvider';
 import { useReduxDevToolsExtension } from '@react-navigation/devtools';
 import { navigationRef } from 'utils/rootNavigation';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { DrawerNavigator } from 'navigators/DrawerNavigator';
 
 export type IAppProps = {};
 
@@ -30,7 +31,7 @@ const App: React.FC<IAppProps> = ({}) => {
         ref={navigationRef}
         theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
         <NavigationProvider>
-          <MyStack />
+          <DrawerNavigator />
         </NavigationProvider>
       </NavigationContainer>
     </>

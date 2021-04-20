@@ -1,17 +1,16 @@
-export const scope = 'app.containers.OrdersAnalytics';
+/*
+ * HomeScreen Messages
+ *
+ * This contains all the text for the HomeScreen Screen.
+ */
+
+export const scope = 'app.screen.HomeScreen';
 
 const messages = {
-  test: {
-    scope: `${scope}.test`,
+  header: {
+    scope: `${scope}.header`,
     options: {
-      defaultValue: 'This is the OrdersAnalytics container!',
-    },
-  },
-
-  title: {
-    scope: `${scope}.title`,
-    options: {
-      defaultValue: 'a title',
+      defaultValue: 'This is the HomeScreen Screen!',
     },
   },
 };
