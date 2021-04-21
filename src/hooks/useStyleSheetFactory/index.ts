@@ -1,15 +1,22 @@
 import { useTheme } from 'hooks/useTheme';
 import { StyleSheet } from 'react-native';
 
-export const useStyleSheetFactory = (callback: (theme: any) => any) => {
+type callbackType = (
+  theme: ReturnType<typeof useTheme>,
+) => StyleSheet.NamedStyles<any>;
+
+export const useStyleSheetFactory = (callback: callbackType) => {
   const theme = useTheme();
   return StyleSheet.create(callback(theme));
 };
 
-export const createStyle: (styles: StyleSheet.NamedStyles<any>) => any = (
-  styles,
-) => ({
-  ...styles,
-});
+// export const makeStyles
+/**
+ * makeStyles(callback) => () => useStyleSheetFactory(callback)
+ * callback((theme)=>{styles})
+ */
+
+export const makeStyleSheet = (callback: callbackType) => () =>
+  useStyleSheetFactory(callback);
 
 export default useStyleSheetFactory;

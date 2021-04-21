@@ -23,8 +23,8 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
-import { StyleSheetFactory } from 'utils/StyleSheetFactory';
-import useStyleSheetFactory, { createStyle } from 'hooks/useStyleSheetFactory';
+
+import { makeStyleSheet } from 'hooks/useStyleSheetFactory';
 
 const stateSelector = createStructuredSelector({
   projectsScreen: makeSelectProjectsScreen(),
@@ -36,7 +36,7 @@ const ProjectsScreen: React.FC<IProjectsScreenProps> = ({}) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const styles = useStyleSheetFactory(stylesFactory);
+  const styles = useStyle();
 
   /* eslint-disable no-unused-vars */
   const { projectsScreen } = useSelector(stateSelector);
@@ -113,58 +113,48 @@ const ProjectsScreen: React.FC<IProjectsScreenProps> = ({}) => {
   );
 };
 
-// const styles = StyleSheet.create({
-// container: {
-//   justifyContent: 'center',
-//   alignItems: 'center',
-//   flex: 1,
-// },
-// });
+const useStyle = makeStyleSheet((theme) => ({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    // color: theme.color.contrastText,
+  },
+  header: {
+    height: 330,
+    // backgroundColor: '#6C63FF',
+    backgroundColor: theme.color.primary,
+    paddingVertical: 30,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
 
-const stylesFactory: (theme: any) => any = (theme) =>
-  createStyle({
-    // const styles = StyleSheet.create({
-    container: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      flex: 1,
-    },
-    header: {
-      height: 330,
-      // backgroundColor: '#6C63FF',
-      backgroundColor: theme.color.primary,
-      paddingVertical: 30,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
+    position: 'absolute',
+    overflow: 'hidden',
+    left: 0,
+    right: 0,
+    top: 0,
+  },
 
-      position: 'absolute',
-      overflow: 'hidden',
-      left: 0,
-      right: 0,
-      top: 0,
-    },
+  avatar: {
+    height: 140,
+    width: 140,
+    borderRadius: 70,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: theme.color.primary,
+  },
 
-    avatar: {
-      height: 140,
-      width: 140,
-      borderRadius: 70,
-      backgroundColor: 'rgba(0,0,0,0.2)',
-      // backgroundColor: theme.color.primary,
-    },
+  name: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 16,
+    color: '#FFF',
+  },
 
-    name: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginTop: 16,
-      color: '#FFF',
-    },
-
-    listItem: {
-      padding: 20,
-      fontSize: 18,
-    },
-  });
-// });
+  listItem: {
+    padding: 20,
+    fontSize: 18,
+  },
+}));
 
 export interface IProjectsScreenProps {}
 

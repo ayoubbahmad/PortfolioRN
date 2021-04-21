@@ -62,6 +62,12 @@ const colors = (theme: string = DEFAULT_THEME) => ({
     main: '#4caf50',
     dark: '#f0f6fc',
   }[theme],
+
+  contrastText: {
+    light: '#323232',
+    main: '#4caf50',
+    dark: '#f0f6fc',
+  }[theme],
 });
 
 /**
