@@ -5,16 +5,10 @@
  */
 
 import React from 'react';
-import { View, StyleSheet, Image, Text, ScrollView } from 'react-native';
+// import { FormattedMessage } from 'components/FormattedMessage';
+import { View, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-
-import { useInjectReducer, useInjectSaga } from 'redux-injectors';
-import makeSelectProjectsScreen from './selectors';
-import reducer from './reducer';
-import saga from './saga';
-import { FormattedMessage } from 'components/FormattedMessage';
-import messages from './messages';
 
 import Animated, {
   useSharedValue,
@@ -24,7 +18,15 @@ import Animated, {
   Extrapolate,
 } from 'react-native-reanimated';
 
-import { makeStyleSheet } from 'hooks/useStyleSheetFactory';
+import { useInjectReducer, useInjectSaga } from 'redux-injectors';
+
+import makeSelectProjectsScreen from './selectors';
+import reducer from './reducer';
+import saga from './saga';
+
+// import messages from './messages';
+
+import { makeStyleSheet } from 'utils/makeStyleSheet';
 
 const stateSelector = createStructuredSelector({
   projectsScreen: makeSelectProjectsScreen(),
@@ -123,7 +125,7 @@ const useStyle = makeStyleSheet((theme) => ({
   header: {
     height: 330,
     // backgroundColor: '#6C63FF',
-    backgroundColor: theme.color.primary,
+    backgroundColor: theme.colors.contrast,
     paddingVertical: 30,
     justifyContent: 'flex-end',
     alignItems: 'center',
