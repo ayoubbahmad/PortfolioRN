@@ -50,7 +50,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
   const dispatch = useDispatch();
   /* eslint-enable no-unused-vars */
 
-  const { color } = useTheme();
+  const { colors } = useTheme();
 
   const scrollYAnimation = useSharedValue(0);
 
@@ -76,7 +76,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({}) => {
           style={[
             styles.introductionContainer,
             {
-              backgroundColor: color.background,
+              backgroundColor: colors.background,
             },
           ]}>
           <FormattedMessage {...messages.introduction} />

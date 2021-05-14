@@ -18,6 +18,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import Icon from 'react-native-vector-icons/Feather'; // menu : {Feather, Ionicons}
+import { makeStyleSheet } from 'utils/makeStyleSheet';
 
 const myImage = require('assets/images/primary_big_image.jpg');
 
@@ -26,7 +27,8 @@ export const AnimatedScrollViewHeader: React.FC<IAnimatedScrollViewHeaderProps> 
 ) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const { color } = useTheme();
+  const { colors } = useTheme();
+  const styles = useStyles();
 
   const { headerHeight, scrollYOffset } = props;
 
@@ -56,7 +58,7 @@ export const AnimatedScrollViewHeader: React.FC<IAnimatedScrollViewHeaderProps> 
       backgroundColor: interpolateColor(
         scrollYOffset.value,
         [0, headerHeight],
-        [`${color.background}00`, `${color.background}`],
+        [`${colors.background}00`, `${colors.background}`],
       ),
     };
   });
@@ -74,7 +76,7 @@ export const AnimatedScrollViewHeader: React.FC<IAnimatedScrollViewHeaderProps> 
         <TouchableOpacity
           style={styles.menuButtonContainer}
           onPress={openDrawer}>
-          <Icon name="menu" size={24} color={color.contrast} />
+          <Icon name="menu" size={24} color={colors.contrast} />
         </TouchableOpacity>
       </Animated.View>
       <Animated.Image source={myImage} style={[styles.image, ImageStyle]} />
@@ -82,7 +84,7 @@ export const AnimatedScrollViewHeader: React.FC<IAnimatedScrollViewHeaderProps> 
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeStyleSheet((theme) => ({
   image: {
     width: '100%',
     resizeMode: 'cover',
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   menuButtonContainer: { padding: 12 },
-});
+}));
 
 export interface IAnimatedScrollViewHeaderProps {
   headerHeight: number;

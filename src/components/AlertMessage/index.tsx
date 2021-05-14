@@ -63,7 +63,7 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
   duration = 2000,
   iconType,
 }) => {
-  const { color } = useTheme();
+  const { colors } = useTheme();
   const animation = useSharedValue(0);
   const dispatch = useDispatch();
 
@@ -124,7 +124,7 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
         styles.container,
         animationStyle,
         {
-          backgroundColor: color[type || 'contrast'], // success error info warning
+          backgroundColor: colors[type || 'contrast'], // success error info warning
         },
       ]}>
       <View style={styles.headerContainer}>
@@ -132,7 +132,7 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
           <Icon
             name={icons[iconType || type || 'default']} // Info
             size={25}
-            color={color.background}
+            color={colors.background}
             style={styles.icon}
           />
         )}
@@ -141,7 +141,7 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
             style={[
               styles.title,
               {
-                color: color.background,
+                color: colors.background,
               },
             ]}>
             {title}
@@ -152,7 +152,7 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
       <Text
         style={[
           {
-            color: color.background,
+            color: colors.background,
           },
           styles.message,
         ]}>
@@ -160,11 +160,11 @@ export const AlertMessage: React.FC<IAlertMessageProps> = ({
       </Text>
 
       <View style={styles.actionsContainer}>
-        <ActionButton title="Undo" textColor={color.background} />
+        <ActionButton title="Undo" textColor={colors.background} />
         {/* <ActionButton title="Retry" textColor={color.background} /> */}
         <ActionButton
           title="close"
-          textColor={color.background}
+          textColor={colors.background}
           onPress={closeAlert}
         />
       </View>

@@ -4,9 +4,9 @@ import { colors as constColors } from 'theme/colors';
 export const useTheme = () => {
   const theme = useSelector((store: any) => store?.themeProvider?.theme);
 
-  let color = constColors(theme);
+  let colors = constColors(theme);
 
-  return { color, selectedTheme: theme };
+  return { colors };
 };
 
 export default useTheme;
