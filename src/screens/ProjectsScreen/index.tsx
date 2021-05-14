@@ -120,11 +120,9 @@ const useStyle = makeStyleSheet((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
-    // color: theme.color.contrastText,
   },
   header: {
     height: 330,
-    // backgroundColor: '#6C63FF',
     backgroundColor: theme.colors.contrast,
     paddingVertical: 30,
     justifyContent: 'flex-end',
